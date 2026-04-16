@@ -1,5 +1,6 @@
 import { timeAgo } from "@/lib/timeAgo";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState } from "react";
 import { Image, Text, View } from "react-native";
 
 type tweetType = {
@@ -18,17 +19,21 @@ type tweetType = {
 };
 
 const FeedCard = ({ id, user, content, stats, createdAt }: tweetType) => {
+  const [imageError, setImageError] = useState(false);
   const INTERPUNCT = "\u00B7"; // ·
+
   return (
     <View className="flex-row gap-3 rounded-lg border-b border-b-slate-200/90 px-4 pb-3">
       <View>
-        {/* <Ionicons name="person-circle" size={48} /> */}
-        <Image
-          src={user.avatar}
-          width={40}
-          height={40}
-          className="inline-block rounded-full"
-        />
+        {imageError ? (
+          <Ionicons name="person-circle-outline" size={40} />
+        ) : (
+          <Image
+            source={{ uri: user.avatar }}
+            onError={() => setImageError(true)}
+            className="h-10 w-10 rounded-full"
+          />
+        )}
       </View>
       <View className="flex-1">
         <View className="flex-row items-center gap-1">

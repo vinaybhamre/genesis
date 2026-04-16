@@ -18,10 +18,12 @@ export default function App() {
 
   return (
     <View className="flex-1 bg-white">
-      <Text className="h-16 text-center align-middle text-xl font-bold text-blue-500">
-        Home Feed
-      </Text>
       <FlatList
+        ListHeaderComponent={() => (
+          <Text className="mb-2 h-14 border-b border-b-slate-200/90 text-center align-middle text-xl font-bold text-blue-500 ">
+            Latest Posts
+          </Text>
+        )}
         data={tweetsData}
         renderItem={({ item }) => <FeedCard {...item} />}
         ItemSeparatorComponent={() => <View className="h-2" />}
