@@ -13,6 +13,9 @@ module.exports = {
         "inter-semibold": ["Inter_600SemiBold"],
         "inter-bold": ["Inter_700Bold"],
       },
+      boxShadow: {
+        modal: "0px 20px 40px rgba(0,0,0,0.1)",
+      },
     },
   },
   plugins: [],
