@@ -1,10 +1,21 @@
+import CustomDrawer from "@/components/CustomDrawer";
 import { Drawer } from "expo-router/drawer.js";
 import React from "react";
 
 const DrawerLayout = () => {
   return (
-    <Drawer>
-      <Drawer.Screen name="(tabs)" options={{ headerShown: false }} />
+    <Drawer
+      screenOptions={{ headerShown: false }}
+      drawerContent={(props) => <CustomDrawer {...props} />}
+    >
+      <Drawer.Screen
+        name="(tabs)"
+        options={{
+          drawerItemStyle: {
+            display: "none",
+          },
+        }}
+      />
     </Drawer>
   );
 };
