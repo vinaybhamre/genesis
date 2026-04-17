@@ -13,8 +13,8 @@ const Header = () => {
 
   return (
     <SafeAreaView edges={["top"]} className=" bg-white dark:bg-black">
-      <View className="h-14 flex-row items-center justify-between bg-white px-4 dark:bg-black">
-        <View>
+      <View className="h-14 flex-row items-center justify-between bg-white px-5 dark:bg-black">
+        <View className="">
           {imageError ? (
             <Ionicons name="person-circle-outline" size={40} />
           ) : (
