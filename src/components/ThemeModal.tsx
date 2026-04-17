@@ -22,7 +22,6 @@ const ThemeModal = ({ modalVisible, setModalVisible }: ThemeModalProps) => {
             <View className="mb-3 items-center">
               <View className="h-1 w-10 rounded-full bg-slate-300 dark:bg-slate-600" />
             </View>
-            setVisible
             <Text className="mb-2 text-center text-base font-semibold text-black dark:text-white">
               Appearance
             </Text>
