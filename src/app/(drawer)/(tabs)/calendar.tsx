@@ -1,17 +1,20 @@
 import EventCard from "@/components/EventCard";
 import EventModal from "@/components/EventModal";
+import FloatingButton from "@/components/FloatingButton";
 import { events } from "@/data/events";
 import { useTheme } from "@/hooks/useTheme";
 import { getMarkedDates } from "@/lib/getMarkedDates";
 import { CalenderEventType } from "@/types/event";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { CalendarList } from "react-native-calendars";
 const CalendarEvents = () => {
   const [modalVisible, setModalVisible] = useState(false);
+
   const today = new Date().toISOString().split("T")[0];
+
   const [selectedDate, setSelectedDate] = useState(today);
+
   const formattedDate = new Date(selectedDate).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
@@ -20,7 +23,9 @@ const CalendarEvents = () => {
 
   const [eventsData, setEventsData] =
     useState<Record<string, CalenderEventType[]>>(events);
+
   const dayEvents = eventsData[selectedDate] || [];
+
   const { resolvedTheme } = useTheme();
 
   const markedDates = getMarkedDates(eventsData, selectedDate, today);
@@ -52,6 +57,7 @@ const CalendarEvents = () => {
         markingType="custom"
         markedDates={markedDates}
       />
+
       <FlatList
         className="bg-slate-200 dark:bg-slate-900"
         ListHeaderComponent={() => (
@@ -77,14 +83,11 @@ const CalendarEvents = () => {
         }}
       />
 
-      <View className="absolute bottom-5 right-5">
-        <Pressable
-          className="rounded-full bg-blue-500 p-4"
-          onPress={() => setModalVisible(!modalVisible)}
-        >
-          <Ionicons name="add" size={24} color={"white"} />
-        </Pressable>
-      </View>
+      <FloatingButton
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+
       <EventModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

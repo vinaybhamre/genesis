@@ -5,12 +5,13 @@ import {
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { useState } from "react";
-import { Image, Modal, Pressable, Text, View } from "react-native";
-import Radio from "./Radio";
+import { Image, Pressable, Text, View } from "react-native";
+import ThemeModal from "./ThemeModal";
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
   const [visible, setVisible] = useState(false);
-  const { theme, resolvedTheme, setTheme } = useTheme();
+
+  const { resolvedTheme } = useTheme();
 
   return (
     <>
@@ -49,64 +50,8 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           </View>
         </DrawerContentScrollView>
       </View>
-      <Modal transparent visible={visible} animationType="fade">
-        <Pressable
-          className="flex-1 justify-end bg-black/30"
-          onPress={() => setVisible(false)}
-        >
-          <Pressable onPress={() => {}}>
-            <View className="rounded-t-3xl bg-white p-5 dark:bg-neutral-900">
-              <View className="mb-3 items-center">
-                <View className="h-1 w-10 rounded-full bg-slate-300 dark:bg-slate-600" />
-              </View>
 
-              <Text className="mb-2 text-center text-base font-semibold text-black dark:text-white">
-                Appearance
-              </Text>
-              <View className="mb-2 h-[1px] bg-slate-200 dark:bg-slate-700" />
-
-              <Pressable
-                className="flex-row items-center justify-between py-4"
-                onPress={() => {
-                  setTheme("light");
-                  setVisible(false);
-                }}
-              >
-                <Text className="text-base text-black dark:text-white">
-                  Light
-                </Text>
-                <Radio selected={theme === "light"} />
-              </Pressable>
-
-              <Pressable
-                className="flex-row items-center justify-between py-4"
-                onPress={() => {
-                  setTheme("dark");
-                  setVisible(false);
-                }}
-              >
-                <Text className="text-base text-black dark:text-white">
-                  Dark
-                </Text>
-                <Radio selected={theme === "dark"} />
-              </Pressable>
-
-              <Pressable
-                className="flex-row items-center justify-between py-4"
-                onPress={() => {
-                  setTheme("system");
-                  setVisible(false);
-                }}
-              >
-                <Text className="text-base text-black dark:text-white">
-                  System Setting
-                </Text>
-                <Radio selected={theme === "system"} />
-              </Pressable>
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
+      <ThemeModal modalVisible={visible} setModalVisible={setVisible} />
     </>
   );
 };

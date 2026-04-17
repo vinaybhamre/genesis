@@ -1,15 +1,18 @@
 import CustomModal from "@/components/CustomModal";
 import FeedCard from "@/components/FeedCard";
+import FloatingButton from "@/components/FloatingButton";
 import { tweets } from "@/data/tweets";
 import { shuffleArray } from "@/lib/shuffle";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
+
   const [refreshingData, setRefreshingData] = useState(false);
+
   const [tweetsData, setTweetsData] = useState(tweets);
+
   function handleRefresh() {
     setRefreshingData(true);
     setTweetsData((data) => shuffleArray(data));
@@ -38,14 +41,10 @@ export default function App() {
         setModalVisible={setModalVisible}
       />
 
-      <View className="absolute bottom-5 right-5">
-        <Pressable
-          className="rounded-full bg-blue-500 p-4"
-          onPress={() => setModalVisible(!modalVisible)}
-        >
-          <Ionicons name="add" size={24} color={"white"} />
-        </Pressable>
-      </View>
+      <FloatingButton
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </View>
   );
 }
