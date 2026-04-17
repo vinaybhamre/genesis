@@ -1,3 +1,4 @@
+import { useTheme } from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "expo-router";
 import { useState } from "react";
@@ -8,10 +9,11 @@ const Header = () => {
   const [imageError, setImageError] = useState(false);
 
   const navigation = useNavigation<any>();
+  const { resolvedTheme } = useTheme();
 
   return (
-    <SafeAreaView edges={["top"]} className="bg-white">
-      <View className="h-14 flex-row items-center justify-between bg-white px-4">
+    <SafeAreaView edges={["top"]} className=" bg-white dark:bg-black">
+      <View className="h-14 flex-row items-center justify-between bg-white px-4 dark:bg-black">
         <View>
           {imageError ? (
             <Ionicons name="person-circle-outline" size={40} />
@@ -26,10 +28,16 @@ const Header = () => {
           )}
         </View>
         <View>
-          <Text className=" font-inter-semibold text-3xl">Genesis</Text>
+          <Text className="font-inter-semibold text-3xl text-black dark:text-white">
+            Genesis
+          </Text>
         </View>
         <View>
-          <Ionicons name="menu" size={28} />
+          <Ionicons
+            name="menu"
+            size={28}
+            color={resolvedTheme === "dark" ? "#fefefe" : "#000"}
+          />
         </View>
       </View>
     </SafeAreaView>

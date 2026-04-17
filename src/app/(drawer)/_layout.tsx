@@ -1,11 +1,15 @@
 import CustomDrawer from "@/components/CustomDrawer";
-import { Drawer } from "expo-router/drawer.js";
-import React from "react";
+import { Drawer } from "expo-router/drawer";
 
 const DrawerLayout = () => {
   return (
     <Drawer
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+        drawerStyle: {
+          backgroundColor: "transparent",
+        },
+      }}
       drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen

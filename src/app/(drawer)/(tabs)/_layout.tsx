@@ -1,13 +1,23 @@
 import Header from "@/components/Header";
+import { useTheme } from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 
 const TabLayout = () => {
+  const { resolvedTheme } = useTheme();
+
+  const tabBarBgColor = resolvedTheme === "dark" ? "black" : "white";
+  const tabBarActiveIconColor = resolvedTheme === "dark" ? "white" : "black";
+
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
         header: () => <Header />,
+        tabBarStyle: {
+          backgroundColor: tabBarBgColor,
+          borderTopColor: tabBarBgColor,
+        },
       }}
     >
       <Tabs.Screen
@@ -18,7 +28,7 @@ const TabLayout = () => {
             <Ionicons name="home" color={color} size={24} />
           ),
           tabBarShowLabel: false,
-          tabBarActiveTintColor: "#000",
+          tabBarActiveTintColor: tabBarActiveIconColor,
         }}
       />
       <Tabs.Screen
@@ -29,7 +39,7 @@ const TabLayout = () => {
             <Ionicons name="calendar" color={color} size={24} />
           ),
           tabBarShowLabel: false,
-          tabBarActiveTintColor: "#000",
+          tabBarActiveTintColor: tabBarActiveIconColor,
         }}
       />
     </Tabs>

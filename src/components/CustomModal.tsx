@@ -18,7 +18,7 @@ const CustomModal = ({ modalVisible, setModalVisible }: CustomModalProps) => {
       }}
     >
       <SafeAreaView edges={[]} className="flex-1" style={{ flex: 1 }}>
-        <View className="flex-1 justify-center bg-black/20">
+        <View className="flex-1 justify-center bg-black/5">
           <View className="m-5 h-60 items-center justify-center rounded-3xl bg-white p-4 shadow-modal">
             <Text className="mb-4 text-center font-inter-semibold">
               FAB Pressed / Modal Appeared

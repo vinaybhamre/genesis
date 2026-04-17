@@ -17,10 +17,10 @@ export default function App() {
   }
 
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 bg-white dark:bg-black">
       <FlatList
         ListHeaderComponent={() => (
-          <Text className="mb-2 h-14 border-b border-b-slate-200/90 text-center align-middle text-xl font-bold text-blue-500 ">
+          <Text className="mb-2 h-14 border-b border-b-slate-200 text-center align-middle text-xl font-bold text-blue-500 dark:border-b-slate-800 ">
             Latest Posts
           </Text>
         )}

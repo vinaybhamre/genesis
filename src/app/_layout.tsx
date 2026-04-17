@@ -1,3 +1,5 @@
+import ThemeContextProvider from "@/context/ThemeContext";
+import { useTheme } from "@/hooks/useTheme";
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -24,12 +26,25 @@ export default function RootLayout() {
   }, [loaded, error]);
 
   if (!loaded && !error) return null;
+
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <Stack>
-        <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-      </Stack>
+      <ThemeContextProvider>
+        <AppContent />
+      </ThemeContextProvider>
     </>
   );
 }
+
+const AppContent = () => {
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <>
+      <StatusBar
+        barStyle={resolvedTheme === "dark" ? "light-content" : "dark-content"}
+      />
+      <Stack screenOptions={{ headerShown: false }} />
+    </>
+  );
+};
